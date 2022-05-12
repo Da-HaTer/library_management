@@ -11,7 +11,7 @@ import com.mysql.jdbc.PreparedStatement;
 import lib.MYSQL_Connection;
 
 public class Librarian extends Utilisateur{
-	private int ide;
+	private int ide; ///fix attributes
 	private String prenom;
 	private String nom;
 
@@ -127,64 +127,14 @@ public class Librarian extends Utilisateur{
         
         catch (SQLException e) {e.printStackTrace();}
 	}*/
-	
-    public int fetch_librarian(int id) {
-        try{ 
-            String query = "select count(*) from enseignant where idEnseignant=?;"; // WHERE Login=? and Pwd=?";
-            java.sql.Connection connection=MYSQL_Connection.getconnection();
-            PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
-            
-            preparedStmt.setInt(1, id);
-            
-            int res=0;
-            ResultSet r = preparedStmt.executeQuery();
-            r.next();
-            res= r.getInt(1);
-            connection.close();
-            return res;
-        }
-        catch (SQLException e) {e.printStackTrace();}
-        return -1;
-    }
-	
-	public static void main(String[] args) {
-		Librarian ens=new Librarian(3,"khalil","raboudi",2,"khalil","gargouri");
-//		ens.save_ens_db();
-		ens.delete_db(2);
-	}
 
-	public ArrayList<Classe> getListeclasses(int sem) {
-		try {
-			String query="SELECT idClasse,nomClasse FROM classe\r\n"
-					+ "JOIN semestre\r\n"
-					+ String.format("ON classe.idS%d = semestre.idsemestre\r\n",sem)
-					+ "JOIN matiere\r\n"
-					+ "ON matiere.idsemestre = semestre.idsemestre\r\n"
-					+ "JOIN enseignant\r\n"
-					+ "On matiere.idEnseignant=enseignant.idEnseignant\r\n"
-					+ "where enseignant.idEnseignant = ?;";
-			java.sql.Connection connection=MYSQL_Connection.getconnection();
-			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
-			preparedStmt.setInt(1, ide);
-			ResultSet resultSet = preparedStmt.executeQuery();
-			ArrayList<Classe> classes = new ArrayList<Classe>();
-			while (resultSet.next()) {
-				Classe classe = new Classe();
-				classe.setIdClasse(resultSet.getInt(1));
-				classe.setName(resultSet.getString(2));
-				classes.add(classe);
-			}
-			connection.close();
-			return classes;
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			// TODO: handle exception
-		}
-		return null;
-	};
+	public static void main(String[] args) {
+//		Librarian ens=new Librarian(3,"khalil","raboudi",2,"khalil","gargouri");
+////		ens.save_ens_db();
+//		ens.delete_db(2);
+	}
 	
-	public void delete_libra(int id) {
+	public void delete_librarian(int id) {
     	try {
     	String query="delete from enseignant where idEnseignant=?;";
     	java.sql.Connection connection=MYSQL_Connection.getconnection();
@@ -200,7 +150,7 @@ public class Librarian extends Utilisateur{
 	}
 	
 	
-    public void save_librarian() { //save or udpate
+    public void save_librarian() { //to fix
     	
         try{
         	String query=String.format("update enseignant set idEnseignant=?,nom=?,prenom=?\r\n"
@@ -224,7 +174,7 @@ public class Librarian extends Utilisateur{
         catch (SQLException e) {e.printStackTrace();}
 	}
     
-    public Librarian fetch_librarian(int id){
+    public Librarian fetch_librarian(int id){///to fix
     	try {
     	
     	String query="select * from enseignant where idEnseignant=?;";
@@ -244,7 +194,7 @@ public class Librarian extends Utilisateur{
     	return null;
     }
 	
-    public ArrayList<Librarian> getListEnseignant() { ///returns matieres of this class for a given smester
+    public ArrayList<Librarian> getListlibrarians() { ///fix
 		try {
 			String query ="select * from enseignant";
 			
@@ -268,12 +218,12 @@ public class Librarian extends Utilisateur{
 		return null;
 	}
 	@Override
-	public String toString() {
+	public String toString() {///to edit
 		// TODO Auto-generated method stub
 		return String.format("%d,%s,%s,",this.ide,this.nom,this.prenom);
 	}
 	
-	public String toString_verbose() {
+	public String toString_verbose() {///to edit or remove
 		// TODO Auto-generated method stub
 		return super.toString_verbose() +String.format("id : %d Nom : %s prenom : %s",this.ide,this.nom,this.prenom);
 	}

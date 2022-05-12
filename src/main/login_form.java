@@ -8,10 +8,10 @@ import java.util.Vector;
 //import javax.swing.BorderFactory;
 import javax.swing.*;
 
-import UI.espace_admin;
+import UI.espace_librarian;
 import UI.espace_enseignant1;
 import UI.espace_etudiant;
-import UI.espace_superadmin;
+import UI.espace_admin;
 import model.Classe;
 import user.Admin;
 import user.Librarian;
@@ -116,7 +116,7 @@ public class login_form extends JFrame implements ActionListener{
 				}
 				case adminTypeCode:{
 					Admin admin= new Admin().fetch_Admin(user.idref);
-					new espace_admin();
+					new espace_librarian();
 					break;
 				}
 			}
