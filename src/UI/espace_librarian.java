@@ -27,7 +27,7 @@ import main.login_form;
 
  public class espace_librarian extends JFrame implements ActionListener{
  JComboBox<String> entity_selection;//,action_selection;
- JButton validate,deconnection;
+ JButton validate,deconnection,somebutton;
      public espace_librarian(){ 
     	 setSize(350, 160);
      	 setLocationRelativeTo(null);
@@ -43,8 +43,10 @@ import main.login_form;
          add(contentpane);
          
          validate = new JButton("Suivant");
+         somebutton = new JButton("Badel essmi");
          deconnection = new JButton("deconnection");
          validate.addActionListener(this);
+         somebutton.addActionListener(this);
          deconnection.addActionListener(this);
          contentpane.add(new JLabel("Selectionner entite"));
          entity_selection=get_entities();
@@ -54,6 +56,7 @@ import main.login_form;
 //         contentpane.add(action_selection);
          contentpane.add(validate);
          contentpane.add(deconnection);
+         contentpane.add(somebutton);
          setVisible(true);
      }
      public JComboBox<String> get_entities() { ///make this external
@@ -103,5 +106,12 @@ import main.login_form;
 			dispose();
 			new login_form();
 		}
+		else if (source==somebutton) {
+			dispose();
+			new interface_interrogation();
+		}
+	}
+ 	public static void main(String[] args) {
+		new espace_librarian();
 	}
  }

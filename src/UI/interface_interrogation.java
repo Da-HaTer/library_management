@@ -1,3 +1,4 @@
+package UI;
 
 
 	import java.util.*;
@@ -24,16 +25,16 @@ import javax.swing.JPanel;
 	import java.awt.event.ItemEvent;
 	import java.awt.event.ItemListener;
 
-	public class interface_interrogatio extends JFrame implements ActionListener{
+	public class interface_interrogation extends JFrame implements ActionListener{
 		
 	
 		JPanel contentPane =(JPanel) this.getContentPane() ;
 		
 		JButton b1 =new JButton ("Les ouvrages existants");
-		JButton b2 =new JButton ("Les ouvrages  prÃªtÃ©s");
+		JButton b2 =new JButton ("Les ouvrages  prêtés");
 		JButton b3 =new JButton ("Les ouvrages disponibles");
-		JButton b4 =new JButton ("Lâ€™ouvrage le plus demandÃ© par un lecteur donnÃ©.");
-		JButton b5 =new JButton ("Les ouvrages qui sont en possession dâ€™un lecteur donnÃ©");
+		JButton b4 =new JButton ("L’ouvrage le plus demandé par un lecteur donné.");
+		JButton b5 =new JButton ("Les ouvrages qui sont en possession d’un lecteur donné");
 		JButton retour =new JButton ("Retour");
 		JLabel classlab = new JLabel ("Selectionner la Classe");
 		JComboBox<Object> class_selection;
@@ -41,7 +42,7 @@ import javax.swing.JPanel;
 		
 		String classe_selected="mi";
 		
-		public interface_interrogatio() throws Exception{
+		public interface_interrogation(){
             
 			super("Informations");
 			this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -52,11 +53,7 @@ import javax.swing.JPanel;
 			
             }catch (Exception e) {}
 			contentPane.setLayout(null);
-		
-	
-			
-	
-           
+
 			contentPane.add(b1);
 			b1.setBounds(50, 20, 450, 50);
 			b1.addActionListener(this);
@@ -114,9 +111,9 @@ import javax.swing.JPanel;
 		
 				
 		
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args){
 		
-	new interface_interrogatio();
+	new interface_interrogation();
 
 	}
 	}

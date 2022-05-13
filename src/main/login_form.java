@@ -19,12 +19,10 @@ import user.Etudiant;
 import user.Utilisateur;
 
 public class login_form extends JFrame implements ActionListener{
-/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	//	private int count=0;
-//	private JFrame frame;
+	//	private JFrame frame;
 	private JLabel userlabel;
 	private JButton button;
 	private JTextField login;
@@ -33,18 +31,8 @@ public class login_form extends JFrame implements ActionListener{
 	private JPanel panel;
 	private JLabel message;
 
-	public static final int librarianTypeCode = 1;
-	public static final int adminTypeCode = 2;
-
-	Vector <Utilisateur> users=new Vector<>();
-	Vector <Classe> classes=new Vector<>();
-
-//	private void initUserList() {
-//		users.add(new Etudiant("user1", "Ahmed", "Ben Ahmed", "ahmed", "1234"));
-//		users.add(new Enseignant("Imene", "12345"));
-//		users.add(new Admin("admin", "*****"));
-//		users.add(new Super_Admin("root", "toor"));
-//	}
+	public static final int librarianTypeCode = 0;
+	public static final int adminTypeCode = 1;
 
     public login_form(){
 //    	initUserList();
@@ -88,35 +76,24 @@ public class login_form extends JFrame implements ActionListener{
         new login_form();
     }
 
-//    private Utilisateur connect(String l,String p){ deprecated after integration of getUserFromDB (user class)
-//    	for(Utilisateur u:users) {
-//			if (u.seConnecter(l, p)){
-//				return u;
-//			}
-//		}
-//    	return null ;
-//    }
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String l= this.login.getText();
 		String p= this.Passwordtext.getText();
-		Utilisateur user = new Utilisateur(l, p);
-		user = user.getUserFromDB(); //null if not found
+		int access = Utilisateur.getUserFromDB(l,p); //null if not found
 //		Utilisateur user=connect(l,p); deprecated
-		if(user!=null){
+		if(access!=-1){
 //			System.out.println(user.getClass());
 			dispose();
 
-			switch (user.getType()) {
+			switch (access) {
 
 				case librarianTypeCode: { /// complete these
-					Librarian librarian= new Librarian().fetch_Librarian(user.idref); ///create class
-					new espace_librarian(librarian);
+					new espace_librarian();
 					break;
 				}
 				case adminTypeCode:{
-					Admin admin= new Admin().fetch_Admin(user.idref);
-					new espace_librarian();
+					new espace_admin();
 					break;
 				}
 			}

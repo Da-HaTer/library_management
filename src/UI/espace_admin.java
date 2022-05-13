@@ -4,25 +4,13 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JComboBox;
 
-import gestion.gestion_abonne;
-import gestion.gestion_admin;
-import gestion.gestion_bibliothecaire;
-import gestion.gestion_emprunts;
-import gestion.gestion_exemplaire;
-import gestion.gestion_librarian;
-import gestion.gestion_ouvrage;
-import gestion.gestion_typeabonnement;
-import gestion.gestion_utilisateur;
+import gestion.*;
 import main.login_form;
-import user.Admin;
-import user.Utilisateur;
 
 public class espace_admin extends espace_librarian{
-	public Utilisateur admin;
-	public espace_admin(Utilisateur user) {
+	public espace_admin() {
 		super();
 		setTitle("espace admin");
-		admin=user;
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -82,6 +70,6 @@ public class espace_admin extends espace_librarian{
 	}
 	
 	public static void main(String[] args) {
-		new espace_admin(null);
+		new espace_admin();
 	}
 }
