@@ -25,7 +25,7 @@ public class espace_admin extends espace_librarian{
 		// TODO Auto-generated method stub
 		///TODO
 		//auto import classes here
-		String[] data= {"Bibliothecaire","Admin","Utilisateur","Abonnements","Emprunts","Abonnes","Ouvrages"};
+		String[] data= {"Bibliothecaire","Admin","Utilisateur","Abonnements","Emprunts","Abonnes","Ouvrages","exemplaires"};
 		JComboBox<String> c=new JComboBox<String>(data);
 		return c;
 	}
@@ -49,12 +49,12 @@ public class espace_admin extends espace_librarian{
 				}
 				case "Emprunts": {
 //					System.out.println("etudiant");
-					new gestion_admin();
+					new gestion_emprunts();
 					break;
 				}
 				case "Abonnements": {
 ////					System.out.println("etudiant");
-//					new gestion_etudiant();
+					new gestion_abonnement();
 //					break;
 				}
 				case "Utilisateur": {
@@ -63,12 +63,17 @@ public class espace_admin extends espace_librarian{
 					break;
 				}
 				case "Abonnes": {
-//					new gestion_enseignant();
+					new gestion_abonnes();
 ////					System.out.println("enseignant");
 					break;
 				}
 				case "Ouvrages": {
-//					new gestion_matiere();
+					new gestion_ouvrage();
+//					System.out.println("matiere");
+					break;
+				}
+				case "exempleres": {
+					new gestion_exemplere();
 //					System.out.println("matiere");
 					break;
 				}

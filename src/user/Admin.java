@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import com.mysql.jdbc.PreparedStatement;
 
 import lib.MYSQL_Connection;
-import model.Classe;
 
 public class Admin extends Utilisateur{ ///to fix
 	private int idadmin;
@@ -135,8 +134,8 @@ public class Admin extends Utilisateur{ ///to fix
 	
 
 	public static void main(String[] args) {
-//		Admin admin=new Admin(4, "admin2", "admin", 2, 0);
-//		System.out.println(admin.fetch_admin(admin.idadmin));
+		Admin admin=new Admin(1);
+		System.out.println(admin.fetch_Admin(admin.idadmin));
 //		admin.save_admin_db();
 //		admin.delete_db(1);
 	}
