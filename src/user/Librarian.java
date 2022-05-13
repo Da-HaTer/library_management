@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import com.mysql.jdbc.PreparedStatement;
 
-import lib.MYSQL_Connection;
+import lib.MYSQL_lib;
 
 public class Librarian extends Utilisateur{
 	private int ide; ///fix attributes
@@ -137,7 +137,7 @@ public class Librarian extends Utilisateur{
 	public void delete_librarian(int id) {
     	try {
     	String query="delete from enseignant where idEnseignant=?;";
-    	java.sql.Connection connection=MYSQL_Connection.getconnection();
+    	java.sql.Connection connection=MYSQL_lib.getconnection();
         PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
         preparedStmt.setInt(1, id);
         int rowsaffected = preparedStmt.executeUpdate();
@@ -158,7 +158,7 @@ public class Librarian extends Utilisateur{
 	    	if (fetch_Enseignant(ide)==null) {
 	    		query = "insert into enseignant values (?,?,?);"; // WHERE Login=? and Pwd=?";
 	    	}
-            java.sql.Connection connection=MYSQL_Connection.getconnection();
+            java.sql.Connection connection=MYSQL_lib.getconnection();
             PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
             if (ide<=0) preparedStmt.setNull(1, ide);
             else preparedStmt.setInt(1, ide);
@@ -178,7 +178,7 @@ public class Librarian extends Utilisateur{
     	try {
     	
     	String query="select * from enseignant where idEnseignant=?;";
-    	java.sql.Connection connection=MYSQL_Connection.getconnection();
+    	java.sql.Connection connection=MYSQL_lib.getconnection();
         PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
         preparedStmt.setInt(1, id);
         ResultSet r = preparedStmt.executeQuery();
@@ -198,7 +198,7 @@ public class Librarian extends Utilisateur{
 		try {
 			String query ="select * from enseignant";
 			
-			java.sql.Connection connection=MYSQL_Connection.getconnection();
+			java.sql.Connection connection=MYSQL_lib.getconnection();
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			ResultSet resultSet = preparedStmt.executeQuery();
 			ArrayList<Librarian> enseignant = new ArrayList<Librarian>();

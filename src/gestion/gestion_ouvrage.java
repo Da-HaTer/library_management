@@ -1,112 +1,14 @@
 package gestion;
 
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Vector;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import user.Librarian;
-
 public class gestion_ouvrage {
 	public gestion_ouvrage() {
 		// TODO Auto-generated constructor stub
-		Vector<String> cols=new Vector<>();
-    	cols.add("idO");
-    	cols.add("nom");
-    	cols.add("prenom");
-        JFrame f = new JFrame("Gestion Enseignants");
-        f.setLayout(new FlowLayout());
-        String[][] data= data_fromarraylist(new Librarian().getListlibrarians());
-        gestion_entite p1=new gestion_entite("Enseignants",cols,data);
-        JButton restore=p1.restore;
-        restore.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				f.dispose();
-				new gestion_ouvrage();
-			}
-			
-		});
-        JButton validate=p1.valider;
-        validate.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				String[][] new_data=p1.get_data();
-//				System.out.println(Arrays.deepToString(data));
-//				System.out.println(Arrays.deepToString(new_data));
-				//check for something new locally
-				for (int i = 0; i < new_data.length; i++) {
-					boolean isnew=true;
-					for (int j = 0; j < data.length && isnew; j++) {
-						if (data[j][0].equals(new_data[i][0])) {
-							isnew=false;
-							if (!arrayequals(new_data[i],(data[j]))) new Librarian(new_data[i]).save_librarian(); // System.out.println("updating");} ///not updating if last column is empty
-//								System.out.println(Arrays.deepToString(new_data[i]));} //update()
-						}
-					}
-					
-					if (isnew)  new Librarian(new_data[i]).save_librarian();// System.out.println("adding enseignant");}
-//						System.out.println(Arrays.deepToString(new_data[i])); //add new
-//					}
-
-				}
-				//check if something is deleted locally
-				for (int i = 0; i < data.length; i++) {
-					boolean iskept=false;
-					for (int j = 0; (j < new_data.length) && (!iskept); j++) {
-						
-						if(data[i][0].equals(new_data[j][0])) {
-
-							iskept=true;}
-					}
-					if (!iskept) {
-//						System.out.println("matiere of id "+data[i][0]+" is deleted");
-						new Librarian().delete_librarian((Integer.parseInt(data[i][0])));
-					}
-				}
-				//check if deleted
-				
-			f.dispose();
-			new gestion_ouvrage();
-			}
-		});
-        
-        
-        f.getContentPane().add(p1);
-        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//      f.setSize(340,250);
-        f.pack();
-        f.setLocationRelativeTo(null);
-        f.setVisible(true);
+		String tablename="ouvrage";
+		String[]columns= new String[]{"idO","TitreO","DateO", "NomAut"};
+		String[]types= new String[]{"i","s","D","s"};
+		new gestion_entite(tablename, columns, types);
 	}
-	public boolean arrayequals(String[] a1,String[]a2) {///duplicate (make imported
-		if (a1.length!=a2.length) return false;
-		boolean equals=true;	
-		for (int i = 0; i < a2.length && equals; i++) {
-			if (!(a1[i].equals(a2[i]))) equals=false;
-		}
-		return equals;
+	public static void main(String[] args) {
+		new gestion_ouvrage();
 	}
-    private String[][] data_fromarraylist(ArrayList<Librarian> librarians) {
-		// TODO Auto-generated method stub
-    	String[][] data=new String[librarians.size()][5];
-    	for (int i = 0; i < data.length; i++) {
-    		Librarian mat=librarians.get(i);
-    		data[i]=mat.toString().split(",");
-		}
-		return data;
-	}
-    public static void main(String[] args) {
-        new gestion_ouvrage();
-    }
 }

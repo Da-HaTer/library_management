@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 import com.mysql.jdbc.*;
 
-import lib.MYSQL_Connection;
+import lib.MYSQL_lib;
 
 
 public class Utilisateur {
@@ -133,7 +133,7 @@ public class Utilisateur {
 	private boolean pwd_in_db(String pwd) {
 	       try{ 
 	            String query = "select * from user where Pwd=?;"; // WHERE Login=? and Pwd=?";
-	            java.sql.Connection connection=MYSQL_Connection.getconnection();
+	            java.sql.Connection connection=MYSQL_lib.getconnection();
 	            PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 	            
 	            preparedStmt.setString(1, pwd);
@@ -153,7 +153,7 @@ public class Utilisateur {
 	public ArrayList<Utilisateur> getListeUtilisateur(){
         try{ 
             String query = "SELECT * FROM User";
-            java.sql.Connection connection=MYSQL_Connection.getconnection();
+            java.sql.Connection connection=MYSQL_lib.getconnection();
             PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
             ResultSet resultSet = preparedStmt.executeQuery();
             ArrayList<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
@@ -177,7 +177,7 @@ public class Utilisateur {
     public Utilisateur getUserFromDB() { //fetch user
         try{ 
             String query = "SELECT * FROM User WHERE Login=? and Pwd=?";
-            java.sql.Connection connection=MYSQL_Connection.getconnection();
+            java.sql.Connection connection=MYSQL_lib.getconnection();
             PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
     			preparedStmt.setString(1, login);
     			preparedStmt.setString(2, motDePasse);
@@ -203,7 +203,7 @@ public class Utilisateur {
 		else {
 			try {
 		    	String query="delete from user where idUser=?;";
-		    	java.sql.Connection connection=MYSQL_Connection.getconnection();
+		    	java.sql.Connection connection=MYSQL_lib.getconnection();
 		        PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 		        preparedStmt.setInt(1, id);
 		        int rowsaffected = preparedStmt.executeUpdate();
@@ -223,7 +223,7 @@ public class Utilisateur {
 	        			+ "where idUser=%d;",this.idUser);
 		    	if (fetch_Utilisateur(idUser)==null) query = "insert into user values (?,?,?,?,?);";
 		    	
-	            java.sql.Connection connection=MYSQL_Connection.getconnection();
+	            java.sql.Connection connection=MYSQL_lib.getconnection();
 	            PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 	            
 	            if (idUser<=0) preparedStmt.setNull(1,idUser);
@@ -251,7 +251,7 @@ public class Utilisateur {
     public static Utilisateur fetch_Utilisateur(int id) { ///change type to admin
         try{ 
             String query = "select * from user where idUser=?;"; // WHERE Login=? and Pwd=?";
-            java.sql.Connection connection=MYSQL_Connection.getconnection();
+            java.sql.Connection connection=MYSQL_lib.getconnection();
             PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
             
             preparedStmt.setInt(1, id);

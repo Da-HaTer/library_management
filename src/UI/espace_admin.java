@@ -4,8 +4,14 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JComboBox;
 
+import gestion.gestion_abonne;
 import gestion.gestion_admin;
+import gestion.gestion_bibliothecaire;
+import gestion.gestion_emprunts;
+import gestion.gestion_exemplaire;
 import gestion.gestion_librarian;
+import gestion.gestion_ouvrage;
+import gestion.gestion_typeabonnement;
 import gestion.gestion_utilisateur;
 import main.login_form;
 import user.Admin;
@@ -25,7 +31,7 @@ public class espace_admin extends espace_librarian{
 		// TODO Auto-generated method stub
 		///TODO
 		//auto import classes here
-		String[] data= {"Bibliothecaire","Admin","Utilisateur","Abonnements","Emprunts","Abonnes","Ouvrages","exemplaires"};
+		String[] data= {"Bibliothecaires","Abonnes","Types abonnements","Emprunts","Exemplaires","Ouvrages"};
 		JComboBox<String> c=new JComboBox<String>(data);
 		return c;
 	}
@@ -37,44 +43,34 @@ public class espace_admin extends espace_librarian{
 			String choix=entity_selection.getSelectedItem().toString();
 			
 			switch (choix) {
-				case "Bibliothecaire": {
+				case "Bibliothecaires": {
 //					System.out.println("etudiant");
-					new gestion_librarian();
-					break;
-				}
-				case "admin": {
-//					System.out.println("etudiant");
-					new gestion_admin();
-					break;
-				}
-				case "Emprunts": {
-//					System.out.println("etudiant");
-					new gestion_emprunts();
-					break;
-				}
-				case "Abonnements": {
-////					System.out.println("etudiant");
-					new gestion_abonnement();
-//					break;
-				}
-				case "Utilisateur": {
-					new gestion_utilisateur(false);
-//					System.out.println("enseignant");
+					new gestion_bibliothecaire();
 					break;
 				}
 				case "Abonnes": {
-					new gestion_abonnes();
-////					System.out.println("enseignant");
+//					System.out.println("etudiant");
+					new gestion_abonne();
+					break;
+				}
+				case "Types abonnements": {
+//					System.out.println("etudiant");
+					new gestion_typeabonnement();
+					break;
+				}
+				case "Emprunts": {
+////					System.out.println("etudiant");
+					new gestion_emprunts();
+//					break;
+				}
+				case "Exemplaires": {
+					new gestion_exemplaire();
+//					System.out.println("enseignant");
 					break;
 				}
 				case "Ouvrages": {
 					new gestion_ouvrage();
-//					System.out.println("matiere");
-					break;
-				}
-				case "exempleres": {
-					new gestion_exemplere();
-//					System.out.println("matiere");
+////					System.out.println("enseignant");
 					break;
 				}
 			}

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import com.mysql.jdbc.PreparedStatement;
 
-import lib.MYSQL_Connection;
+import lib.MYSQL_lib;
 
 public class Admin extends Utilisateur{ ///to fix
 	private int idadmin;
@@ -52,7 +52,7 @@ public class Admin extends Utilisateur{ ///to fix
 		try {
 			String query ="select * from admin";
 			
-			java.sql.Connection connection=MYSQL_Connection.getconnection();
+			java.sql.Connection connection=MYSQL_lib.getconnection();
 			PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
 			ResultSet resultSet = preparedStmt.executeQuery();
 			ArrayList<Admin> admins = new ArrayList<Admin>();
@@ -75,7 +75,7 @@ public class Admin extends Utilisateur{ ///to fix
 	public void delete_Admin(int id) {
     	try {
     	String query="delete from admin where idAdmin=?;";
-    	java.sql.Connection connection=MYSQL_Connection.getconnection();
+    	java.sql.Connection connection=MYSQL_lib.getconnection();
         PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
         preparedStmt.setInt(1, id);
         int rowsaffected = preparedStmt.executeUpdate();
@@ -96,7 +96,7 @@ public class Admin extends Utilisateur{ ///to fix
 	    		
 	    		query = "insert into admin values (?,?);"; // WHERE Login=? and Pwd=?";
 	    	}
-            java.sql.Connection connection=MYSQL_Connection.getconnection();
+            java.sql.Connection connection=MYSQL_lib.getconnection();
             PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
             if (idadmin<=0) preparedStmt.setNull(1,idadmin);
             else preparedStmt.setInt(1, idadmin);
@@ -113,7 +113,7 @@ public class Admin extends Utilisateur{ ///to fix
     public Admin fetch_Admin(int id) { ///change type to admin
         try{ 
             String query = "select * from admin where idAdmin=?;"; // WHERE Login=? and Pwd=?";
-            java.sql.Connection connection=MYSQL_Connection.getconnection();
+            java.sql.Connection connection=MYSQL_lib.getconnection();
             PreparedStatement preparedStmt = (PreparedStatement) connection.prepareStatement(query);
             
             preparedStmt.setInt(1, id);
