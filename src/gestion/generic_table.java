@@ -35,8 +35,9 @@ public class generic_table extends JPanel {
 			};
 		
 	private JPanel buttonPanel;
+	public JLabel title;
 	public JButton valider,restore,delete,addButton,updateButton;
-
+	
 	// Create the main panel
 	public generic_table(String tablename, Vector<String> colnames, String[][] data) {
 		if (colnames != null) {
@@ -159,7 +160,7 @@ public class generic_table extends JPanel {
 		// Create the JTextFields panel
 		JPanel textPanel = new JPanel();
 		textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
-		JLabel title = new JLabel(tablename);
+		title = new JLabel(tablename);
 		title.setFont(new Font("Serif", Font.BOLD, 18));
 		init_labels();
 		init_fields();

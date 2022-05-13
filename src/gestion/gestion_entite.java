@@ -14,15 +14,15 @@ import javax.swing.JPanel;
 import lib.MYSQL_lib;
 import user.Librarian;
 
-public class gestion_entite {
+public class gestion_entite extends JFrame{
 	public generic_table table_api;
 	
 	public gestion_entite(String tablename,String[]columns,String[]types) {
 		// TODO Auto-generated constructor stub
-		
+		super("Gestion "+tablename);
 		Vector<String> cols=new Vector<>(Arrays.asList(columns));
-        JFrame f = new JFrame("Gestion "+tablename);
-        f.setLayout(new FlowLayout());
+//        JFrame f = new JFrame();
+        setLayout(new FlowLayout());
 //        String[][] data= data_fromarraylist(new Librarian().getListlibrarians());
         String[][] data=MYSQL_lib.get_data(tablename, columns.length);
         table_api=new generic_table(tablename,cols,data);
@@ -34,7 +34,7 @@ public class gestion_entite {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				f.dispose();
+				dispose();
 				new gestion_entite(tablename,columns,types);
 			}
 			
@@ -83,18 +83,18 @@ public class gestion_entite {
 				}
 				//check if deleted
 				
-			f.dispose();
+			dispose();
 			new gestion_entite(tablename,columns,types);
 			}
 		});
         
         
-        f.getContentPane().add(table_api);
-        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        getContentPane().add(table_api);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 //      f.setSize(340,250);
-        f.pack();
-        f.setLocationRelativeTo(null);
-        f.setVisible(true);
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
 	}
 	public boolean arrayequals(String[] a1,String[]a2) {///duplicate (make imported
 		if (a1.length!=a2.length) return false;

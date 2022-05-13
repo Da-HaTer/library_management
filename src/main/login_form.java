@@ -38,7 +38,7 @@ public class login_form extends JFrame implements ActionListener{
 //    	initUserList();
     	panel = new JPanel();
 //        frame = new JFrame();
-
+    	setTitle("Login");
         setSize(400, 180);
 
         setLocationRelativeTo(null); //centered

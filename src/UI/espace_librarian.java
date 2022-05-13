@@ -43,7 +43,7 @@ import main.login_form;
          add(contentpane);
          
          validate = new JButton("Suivant");
-         somebutton = new JButton("Badel essmi");
+         somebutton = new JButton("Interrogation");
          deconnection = new JButton("deconnection");
          validate.addActionListener(this);
          somebutton.addActionListener(this);
