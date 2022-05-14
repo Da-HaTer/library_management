@@ -91,23 +91,23 @@ import javax.swing.JPanel;
 			
             if(source==b1)
             {
+            	new afficheO();
 				// liste des ouvrage existants
-            	
-            }            if(source==b2)
-            {
+            }
+            if(source==b2){
+            	new afficheOP(1);
             	// liste des ouvrage disponibles
-            }            if(source==b5)
-            {
-				
-            }            if(source==retour)
-            {
-				
             }
-            if(source==retour)
-            {
-				
+            if(source==b3){
+            	new afficheOP(0);
+			}
+            if(source==b4){
+            	new affichePD();
             }
-					}
+            if(source==b5){
+				new affichePL();	
+            }
+		}
 		
 				
 		

@@ -63,6 +63,10 @@ public class espace_admin extends espace_librarian{
 				}
 			}
 		}
+		else if (source==somebutton) {
+			dispose();
+			new interface_interrogation();
+		}
 		else if (source==deconnection) {
 			dispose();
 			new login_form();

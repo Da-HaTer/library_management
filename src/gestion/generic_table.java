@@ -26,7 +26,7 @@ public class generic_table extends JPanel {
 	// Create the table model
 	private DefaultTableModel model;
 	// Create the table
-		private JTable table = new JTable(model){
+		public JTable table = new JTable(model){
 				private static final long serialVersionUID = 1L;
 		
 				public boolean isCellEditable(int row, int column) {                
@@ -51,11 +51,11 @@ public class generic_table extends JPanel {
 		tfields = new Vector<JTextField>();
 		labels = new Vector<JLabel>();
 		// Add button
-		addButton = new JButton("+ Add");
+		addButton = new JButton("+ AJouter");
 		// Update button
-		updateButton = new JButton("Update");
+		updateButton = new JButton("modifier");
 		restore = new JButton("Restaurer");
-		delete = new JButton("delete");
+		delete = new JButton("Supprimmer");
 		valider = new JButton("Enregistrer");
 		// Button panel
 		buttonPanel = new JPanel();
@@ -187,6 +187,11 @@ public class generic_table extends JPanel {
 		return unique;
 	}
 	public void hide_ui() {
+		delete.setVisible(false);
+		addButton.setVisible(false);
+		updateButton.setVisible(false);
+		valider.setVisible(false);
+		restore.setVisible(false);
 		for (int i = 0; i < columns.length; i++) {
 			labels.get(i).setVisible(false);
 			tfields.get(i).setVisible(false);
